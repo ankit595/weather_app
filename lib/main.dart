@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'firstscreen.dart';
+import 'homepage.dart';
 // import 'package:weather_app/homepage.dart';
 
 void main() {
@@ -41,9 +42,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Timer(Duration(seconds: none), () {
-    //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Weatherapp()));
-    // });
+    Timer(Duration(seconds: 3), () {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WeatherApp()));
+    });
   }
 
   Widget build(BuildContext context) {
@@ -93,7 +94,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     foregroundColor: Colors.white,
                   ),
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Weatherapp()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>WeatherApp()));
 
                   },
 
