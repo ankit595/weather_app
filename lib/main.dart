@@ -1,10 +1,18 @@
 import 'dart:async';
+import 'package:flutter/rendering.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:weather_app/homepage.dart';
+
+
+
+
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'firstscreen.dart';
+// import 'package:weather_app/homepage.dart';
 
 void main() {
+  // debugPaintSizeEnabled = true; // Enables debug paint
   runApp(const MyApp());
 }
 
@@ -33,9 +41,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WeatherApp()));
-    });
+    // Timer(Duration(seconds: none), () {
+    //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Weatherapp()));
+    // });
   }
 
   Widget build(BuildContext context) {
@@ -50,23 +58,26 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           Positioned(
-            top: 70, // Adjust as needed
-            left: 50, // Adjust as needed
+            top: MediaQuery.of(context).size.height*0.15, // Adjust as needed
+            left: 50, // Adjust as neededjo
             right: 50, // Adjust as needed
-            child: Image.asset(
-              'assets/icons.png' // Replace with your overlay image
-              ,
-              fit: BoxFit.fill,
-            ),
+    child: AnimatedTextKit(
+      animatedTexts: [
+
+        TyperAnimatedText('The Weather App',
+          textStyle: GoogleFonts.pacifico
+            (
+            fontSize: 33,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),),
+      ],
+      onTap: () {
+        print("I am executing");
+      },
+    ),
           ),
-          Center(
-            child: Positioned(
-                left: 50,
-                child: Text("The Weather App",
-                    style: GoogleFonts.rubikVinyl(
-                        textStyle:
-                        TextStyle(fontSize: 30, color: Colors.white)))),
-          ),
+
           Positioned(
             bottom: 30,
             left: 0,
@@ -77,13 +88,17 @@ class _SplashScreenState extends State<SplashScreen> {
                 height: 50,
                 width: 200,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                  ),
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>WeatherApp()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Weatherapp()));
 
                   },
 
                   child: Text("Get Started",style: GoogleFonts.nunito(
-                      textStyle: TextStyle(fontSize: 20,color: Color.fromRGBO(26, 181, 214,1))
+                      textStyle: TextStyle(fontSize: 20,color: Colors.white, fontWeight: FontWeight.bold)
                   ),),
                 ),
               ),
