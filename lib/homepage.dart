@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:weather_app/test.dart';
 import 'weather_service.dart';
 import 'location_service.dart';
 
@@ -39,8 +40,9 @@ class _WeatherAppState extends State<WeatherApp> {
       Position position = await _locationService.getCurrentLocation();
       final weather = await _weatherService.getCurrentWeatherByCoordinates(
           position.latitude, position.longitude);
-      final forecastData = await _weatherService.getFiveDayForecastByCoordinates(
-          position.latitude, position.longitude);
+      final forecastData =
+          await _weatherService.getFiveDayForecastByCoordinates(
+              position.latitude, position.longitude);
 
       setState(() {
         currentWeather = weather;
@@ -54,8 +56,7 @@ class _WeatherAppState extends State<WeatherApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text('Weather App'),
         ),
@@ -89,39 +90,44 @@ class _WeatherAppState extends State<WeatherApp> {
               currentWeather == null
                   ? Center(child: Text('No weather data available'))
                   : Column(
-                children: [
-                  Text(
-                    'Current Weather in $city',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Text(
-                    '${currentWeather!['main']['temp']}°C, ${currentWeather!['weather'][0]['description']}',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
-              ),
+                      children: [
+                        Text(
+                          'Current Weather in $city',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        Text(
+                          '${currentWeather!['main']['temp']}°C, ${currentWeather!['weather'][0]['description']}',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
               Divider(),
 
               // 5-day forecast display
               forecast == null
                   ? Center(child: Text('No forecast data available'))
                   : Expanded(
-                child: ListView.builder(
-                  itemCount: forecast!.length,
-                  itemBuilder: (context, index) {
-                    final item = forecast![index];
-                    return ListTile(
-                      title: Text('${item['dt_txt']}'),
-                      subtitle: Text(
-                          '${item['main']['temp']}°C, ${item['weather'][0]['description']}'),
-                    );
-                  },
-                ),
-              ),
+                      child: ListView.builder(
+                        itemCount: forecast!.length,
+                        itemBuilder: (context, index) {
+                          final item = forecast![index];
+                          return ListTile(
+                            title: Text('${item['dt_txt']}'),
+                            subtitle: Text(
+                                '${item['main']['temp']}°C, ${item['weather'][0]['description']}'),
+                          );
+                        },
+                      ),
+                    ),
             ],
           ),
         ),
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Testing()));
+          },
+          child: Text("Test"),
+        ));
   }
 }
