@@ -80,59 +80,66 @@ class _TestingState extends State<Testing> {
                 ),
               ),
             ),
-      Container(
-        margin: EdgeInsets.all(8),
-        height: MediaQuery.of(context).size.height * .55,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          image: DecorationImage(
-            image: AssetImage("assets/clear.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch children horizontally
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Date, Day",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w500,
+            Container(
+              margin: EdgeInsets.all(8),
+              height: MediaQuery.of(context).size.height * .5,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                image: DecorationImage(
+                  image: AssetImage("assets/clear.jpg"),
+                  fit: BoxFit.cover,
                 ),
-                textAlign: TextAlign.left, // Aligns text to the left
               ),
-            ),
-            Spacer(), // Add space between Date and Temp
-            Text(
-              "Temp",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
+              child: Column(
+                crossAxisAlignment:
+                    CrossAxisAlignment.stretch, // Make children take full width
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Date, Day",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.left, // Align to left
+                    ),
+                  ),
+                  Spacer(), // Push "Temp" vertically to the center
+                  Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.end, // Align "Temp" to the right
+                    children: [
+                      Text(
+                        "Temp",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 8), // Optional spacing from the edge
+                    ],
+                  ),
+                  Spacer(), // Push "City" to the bottom
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "City",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                      ),
+                      textAlign: TextAlign.right, // Align to right
+                    ),
+                  ),
+                ],
               ),
-              textAlign: TextAlign.center, // Centers the text
-            ),
-            Spacer(), // Add space between Temp and City
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "City",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w300,
-                ),
-                textAlign: TextAlign.right, // Aligns text to the right
-              ),
-            ),
+            )
           ],
-        ),
-      )
-      ],
         ),
       ),
     );
