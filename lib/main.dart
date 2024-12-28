@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'firstscreen.dart';
+
 import 'homepage.dart';
 // import 'package:weather_app/homepage.dart';
 
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(brightness: Brightness.dark),
       title: 'Weather App',
       home: const SplashScreen(),
     );
